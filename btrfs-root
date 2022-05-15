@@ -11,3 +11,21 @@ done
 
 chmod 1777 @/tmp
 chattr +C @/var
+
+ls | grep -v @ | xargs mv -t @
+
+cd /
+umount /target
+mount -o subvol=@,ssd,noatime,space_cache=v2,commit=120,compress=zstd /dev/sda2 /target
+
+mount --bind /proc /target/proc
+mount --bind /dev /target/dev
+mount --bind /sys /target/sys
+chroot /target
+
+sed "s+defaults+defaults,subvol=@,ssd,noatime,space_cache=v2,commit=120,compress=zstd+" -i /etc/fstab
+sed '/swap/d' -i /etc/fstab
+
+update-initframfs -u -k all
+grub-install --recheck /dev/sda
+update-grub
