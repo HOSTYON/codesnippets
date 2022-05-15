@@ -6,4 +6,8 @@ btrfs subvolume create @
 for i in {home,opt,root,srv,tmp,usr,var}; do
     btrfs subvolume create @/"$i"
     mv "$i"/* @/"$i"/
+    rmdir "$i"
 done
+
+chmod 1777 @/tmp
+chattr +C @/var
