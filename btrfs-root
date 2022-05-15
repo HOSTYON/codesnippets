@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd /target
+btrfs subvolume create @
+
+for i in {home,opt,root,srv,tmp,usr,var}; do
+    btrfs subvolume create @/"$i"
+    mv "$i"/* @/"$i"/
+done
