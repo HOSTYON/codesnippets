@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /target
+cd /target || exit
 btrfs subvolume create @
 
 for i in {home,opt,root,srv,tmp,usr,var}; do
