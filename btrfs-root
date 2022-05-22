@@ -3,7 +3,7 @@
 cd /target || exit
 btrfs subvolume create @
 
-for i in {home,opt,root,srv,tmp,usr,var}; do
+for i in {home,opt,root,srv,tmp,var}; do
     btrfs subvolume create @/"$i"
     mv "$i"/* @/"$i"/
     rmdir "$i"
