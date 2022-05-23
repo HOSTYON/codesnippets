@@ -12,6 +12,7 @@ done
 chmod 1777 @/tmp
 chattr +C @/var
 
+# shellcheck disable=SC2010
 ls | grep -v @ | xargs mv -t @
 
 cd /
