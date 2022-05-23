@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# wget -O- c.hos.yt/btrfs-root | bash
+
 cd /target || exit
 btrfs subvolume create @
 
